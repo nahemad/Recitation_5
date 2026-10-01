@@ -29,8 +29,11 @@ def count_values(a, k):
     >>> count_values([2,2,1,0,1,0,1,3], 3)
     [2, 3, 2, 1]
     """
-    ###TODO
-    pass
+    result = [0]*(k+1)
+    #result = [0 for _ in range(k+1)]
+    for i in a:
+        result[i] += 1
+    return result
     
 def get_positions(counts):
     """
@@ -43,8 +46,12 @@ def get_positions(counts):
     >>> get_positions([2, 3, 2, 1])
     [0, 2, 5, 7]    
     """
+    #[0] + scan(plus, 0, [2, 3, 2, 1])[0][:-1] 
+    #[0, 2, 4, 7]
+    
+    #append 0 at the beginning, remove extra return stuff, and remove last index. 
+    return [0]+ scan(plus, 0, counts)[0][:-1]
     ###TODO
-    pass
     
 def construct_output(a, positions):
     """
@@ -61,7 +68,14 @@ def construct_output(a, positions):
     [0,0,1,1,1,2,2,3]    
     """
     ###TODO
-    pass
+   
+    result = [0 for i in range(len(a))]
+    for i in a:
+        pos = positions[i]
+        result[pos] = i
+        positions[i] += 1
+    return result
+    
 
 def count_values_mr(a, k):
     """
@@ -76,11 +90,15 @@ def count_map(value):
     # hint: this function should return a list, even if that list
     # contains a single tuple
     ###TODO
-    pass
+    return [(value,1)]
+
+    
 
 def count_reduce(group):
     ###TODO
-    pass
+    numbers = group[1]
+    return (group[0], sum(numbers))
+
 
 
 # the below functions are provided for use above.
